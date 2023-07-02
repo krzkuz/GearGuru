@@ -1,5 +1,20 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 
-admin.site.register(CustomUser, UserAdmin)
+from gear.models import Guitar
+
+class GuitarInLine(admin.TabularInline):
+    model = Guitar
+    extra = 0
+    exclude = []
+
+class CustomUserAdmin(admin.ModelAdmin):
+    exclude = ['password']
+    readonly_fields = ['last_login', 'date_joined']
+    inlines = [GuitarInLine]
+
+    class Meta:
+        model = CustomUser
+
+    
+admin.site.register(CustomUser, CustomUserAdmin)

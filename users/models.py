@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, username, password=None):
@@ -31,21 +32,21 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
-    email = models.EmailField(blank=False, null=False, unique=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=50, null=True, blank=False)
+    last_name = models.CharField(max_length=50, null=True, blank=False)
     country = models.CharField(max_length=50, null=True, blank=False)
     city = models.CharField(max_length=150, null=True, blank=False)
     street = models.CharField(max_length=150, null=True, blank=False)
     apartment = models.CharField(max_length=50, null=True, blank=False)
     zip_code = models.CharField(max_length=50, null=True, blank=False)
     last_active = models.DateTimeField(auto_now=True)
-    joined = models.DateTimeField(auto_now_add=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     # reviews = models.ForeignKey()
     # messages = models.ForeignKey()
-    # instruments = models.ForeignKey()
 
     objects = UserManager()
     
