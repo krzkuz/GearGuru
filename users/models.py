@@ -45,7 +45,8 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    # reviews = models.ForeignKey()
+    average_rating = models.DecimalField(max_digits=3, decimal_places=2, 
+        blank=True, null=True)
     # messages = models.ForeignKey()
 
     objects = UserManager()
@@ -53,7 +54,10 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+
     def __str__(self):
         return self.username
+    
+
 
 

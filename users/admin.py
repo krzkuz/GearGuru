@@ -10,7 +10,7 @@ class GuitarInLine(admin.TabularInline):
 
 class CustomUserAdmin(admin.ModelAdmin):
     exclude = ['password']
-    readonly_fields = ['last_login', 'date_joined']
+    readonly_fields = ['last_login', 'date_joined', 'average_rating']
     inlines = [GuitarInLine]
 
     class Meta:

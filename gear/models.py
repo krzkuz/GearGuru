@@ -5,12 +5,43 @@ from .model_choices import (GuitarTypeChoices, BodyTypeChoices,
     TransactionTypeChoices)
 from users.models import CustomUser
 
+
+class Exchange(models.Model):
+    brand = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    more_info = models.TextField(verbose_name='More informations')
+    related_gear = models.ForeignKey('Guitar', on_delete=models.CASCADE, 
+        related_name='exchange_for')
+    
+    def __str__(self):
+        return f'{self.brand} {self.model}'
+
+
+class Rent(models.Model):
+    price = models.IntegerField(null=False, blank=False)
+    renting_time = models.IntegerField(null=False, blank=False, 
+        verbose_name='Renting time in days')
+    more_info = models.TextField(verbose_name='More informations')
+    related_gear = models.OneToOneField('Guitar', on_delete=models.CASCADE)
+
+
+class Sell(models.Model):
+    price = models.IntegerField(null=True, blank=True)
+    more_info = models.TextField(verbose_name='More informations')
+    related_gear = models.OneToOneField('Guitar', on_delete=models.CASCADE)
+
+
+class Image(models.Model):
+    image = models.ImageField(null=True, blank=True, upload_to='images/')
+    guitar = models.ForeignKey('Guitar', on_delete=models.CASCADE, null=True, 
+        blank=True)
+
+
 class Guitar(models.Model):
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     transaction_type = models.CharField(max_length=3, 
-        choices=TransactionTypeChoices.choices, default=TransactionTypeChoices.SELL)
-    price = models.IntegerField(null=True, blank=True)
+        choices=TransactionTypeChoices.choices, default=TransactionTypeChoices.SELL)#
     guitar_type = models.CharField(max_length=2, choices=GuitarTypeChoices.choices)
     condition = models.CharField(max_length=3, choices=ConditionTypeChoices.choices, 
         default=ConditionTypeChoices.EXCELLENT)
@@ -28,10 +59,7 @@ class Guitar(models.Model):
         choices=PickupConfigurationChoices.choices)
     bridge_type = models.CharField(max_length=2, choices=BridgeTypeChoices.choices)
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    
-    #pictures
-    #exchange
-    #rent
+
     def __str__(self):
         return f'{self.brand} {self.model}'
     
