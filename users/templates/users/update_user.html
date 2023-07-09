@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block content %}
+<form class="submission-form" action="", method='POST'>
+    {% csrf_token %}
+    {% for field in form %}
+        {{field}}
+    {% endfor %}
+    <button class='button center' type="submit" id="submit">Update</button>
+</form>
+{% endblock content %}
+

@@ -15,7 +15,6 @@ class Message(models.Model):
     body = models.TextField(null=True, blank=True)
     is_read = models.BooleanField(default=False)
     time_stamp = models.DateTimeField(auto_now_add=True)
-    # images = models.ManyToManyField(Image, blank=True)
     related_gear = models.ForeignKey(Guitar, on_delete=models.SET_NULL, null=True,
         blank=True)
     from_user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL,

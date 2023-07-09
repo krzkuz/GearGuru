@@ -4,7 +4,6 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, email, username, password=None):
         if email is None:
             raise TypeError('Users must have an email address.')
@@ -29,9 +28,10 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
+    
 
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50, null=True, blank=False)
     last_name = models.CharField(max_length=50, null=True, blank=False)
@@ -47,13 +47,16 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField(default=True)
     average_rating = models.DecimalField(max_digits=3, decimal_places=2, 
         blank=True, null=True)
-    # messages = models.ForeignKey()
 
     objects = UserManager()
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def save(self,*args, **kwargs):
+        username = self.email.split('@')[0]
+        self.username = username
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.username

@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block title %}
+    Register
+{% endblock title %}
+{% block content %}
+    {% if page == 'register' %}
+    <div class='container center'>
+        <h1>Register account</h1>
+    </div>
+    <form class="submission-form" action="", method='POST'>
+        {% csrf_token %}
+        {% for field in form %}
+            {{field}}
+        {% endfor %}
+        <button class='button center' type="submit" id="submit">Register</button>
+    </form>
+    <div class="container">
+        <a class="button" href="{% url 'login' %}">
+            Already have an account?</a>
+    </div>
+
+
+    {% else %}
+    <div class='container center'>
+        <h1>Login to your account</h1>
+    </div>
+    <form class="submission-form" action="", method='POST'>
+        {% csrf_token %}
+        <input class="input" type="email" placeholder="Enter your email" name="email">
+        <input class="input" type="password" placeholder="Enter your password" 
+        name="password">
+        <button class="button center" type="submit">Login</button>
+        <a class="password-link" href="">I forgot the password</a>
+    </form>
+    <div class="container">
+        <a class="button" href="{% url 'register' %}">
+            Don't have an account?</a>
+    </div>
+    {% endif %}
+{% endblock content %}
+

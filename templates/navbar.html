@@ -1,0 +1,14 @@
+{% load static %}
+
+<nav>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="">QWE</a></li>
+        <li><a href="">Contact</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a class="log-btn last-item" href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a class="log-btn last-item" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>

@@ -4,10 +4,7 @@ from django.core.files.images import ImageFile
 from .models import Message, Image
 from users.models import CustomUser
 
-from GearGuru.utils import get_project_root
-
-root = get_project_root()
-path = str(root) + '\static\images\Gibson-Custom.jpg\\'
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class MessageTestCase(TestCase):
     def create_users(self):
@@ -25,8 +22,12 @@ class MessageTestCase(TestCase):
 
     def setUp(self):
         self.create_users()
-        self.image_file = ImageFile(open(path, 'rb'))
-        
+        self.image_file = SimpleUploadedFile(
+            '/static/images/Gibson-Custom.jpg',
+            b'file_content',
+            content_type='image/jpeg'
+        )
+
         self.message = Message.objects.create(
             title='abc',
             from_user=self.user_a,
@@ -39,5 +40,5 @@ class MessageTestCase(TestCase):
             )
 
     def test_is_image_created(self):
-        image = self.image
-        self.assertTrue(image.exist())
+        qs = Image.objects.all()
+        self.assertTrue(qs.count(), 1)
