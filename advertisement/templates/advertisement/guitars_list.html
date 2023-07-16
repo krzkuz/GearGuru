@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1>Sale, trade, rent</h1>
+{% for guitar in guitars %}
+<a href="{% url 'guitar' guitar.id %}">{{guitar}}</a>
+<img src="{{guitar.image_set.first.image_url}}" alt="" width='100'>
+<br>
+{% endfor %}
+
+{% endblock content %}

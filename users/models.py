@@ -47,7 +47,7 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField(default=True)
     average_rating = models.DecimalField(max_digits=3, decimal_places=2, 
         blank=True, null=True)
-
+    # profile_pic
     objects = UserManager()
     
     USERNAME_FIELD = 'email'

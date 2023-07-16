@@ -2,7 +2,9 @@ from django.contrib import admin
 
 from .model_choices import TransactionTypeChoices
 from .models import (Guitar, BassGuitarProxy, ElectricGuitarProxy, 
-    AcousticGuitarProxy, ClassicalGuitarProxy, Exchange, Rent, Sell, Image)
+    AcousticGuitarProxy, ClassicalGuitarProxy)
+from advertisement.models import Exchange, Rent, Sell, Image
+
 
 class Inline(admin.ModelAdmin):
     def get_inline_instances(self, request, obj=None):
@@ -43,17 +45,6 @@ class SellInLine(admin.TabularInline):
     model = Sell
     extra = 0
     list_display = ['brand', 'model', 'more_info']
-
-
-class ExchangeAdmin(admin.ModelAdmin):
-    list_display = ['brand', 'model', 'related_gear']
-    class Meta:
-        model = Exchange
-
-    def get_queryset(self, request):
-        return Exchange.objects.all()
-    
-admin.site.register(Exchange, ExchangeAdmin)
 
 
 class GuitarAdmin(Inline):

@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% block content %}
+<p>
+{% if rent %}
+    {{rent.title}}<br><br>
+    Rent@@@<br>
+    {{rent.price}}<br>
+    {{rent.renting_time}}<br>
+    {{rent.more_info}}<br>
+
+{% endif %}
+
+{% if sell %}
+    {% if sell.title %}
+        {{sell.title}}<br><br>
+    {% else %}
+        {{guitar}}<br><br>
+    {% endif %}
+    Sell@@@<br>
+    {{sell.price}}<br>
+    {{sell.more_info}}<br>
+
+{% endif %}
+
+
+{% if exchange %}
+    {% if rent.title %}
+        {{exchange.title}}<br><br>
+    {% else %}
+        {{guitar}}<br><br>
+    {% endif %}
+    Exchange@@@<br>
+    {{exchange.brand}} {{exchange.model}}<br>
+    {{exchange.more_info}}<br>
+
+{% endif %}
+</p>
+<p>
+    Brand-{{guitar.brand}}<br>
+
+</p>
+{% endblock content %}

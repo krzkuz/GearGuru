@@ -45,7 +45,7 @@ body {
     display: inline-block;
     margin: 15px;
     line-height: 40px;
-    font-size: 20px;
+    font-size: 15px;
     text-indent: 5px;
     border-radius: 15px;
     border: 1px solid rgba(119, 119, 119, 0.651);
@@ -108,17 +108,31 @@ header {
 
 .nav-links li {
     display: inline-block;
-    margin: 0 40px;
+    margin: 0 20px;
 }
 
 .nav-links li a {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 14px;
+    color: beige;
     transition: all 0.3s ease 0s;
 }
 
 .nav-links li a:hover {
     color: rgba(179, 146, 1, 0.897);
+}
+
+.drop-menu {
+    text-decoration: none;
+    /* font-size: 14px; */
+    color: beige;
+    transition: all 0.3s ease 0s;
+    background-color: transparent;
+}
+
+.drop-menu:hover {
+    color: rgba(179, 146, 1, 0.897);
+    background-color: transparent;
 }
 
 .log-btn {
@@ -140,4 +154,8 @@ header {
 .log-btn:hover {
     background-color: #222222;
     color: rgb(69, 67, 95);
+}
+
+.dropdown-menu {
+    --bs-body-bg: rgba(255, 255, 255, 0.438);
 }

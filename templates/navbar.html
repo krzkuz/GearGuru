@@ -3,8 +3,63 @@
 <nav>
     <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="">QWE</a></li>
-        <li><a href="">Contact</a></li>
+        <li><a href="">Add</a></li>
+        
+        <li class="dropdown">
+            <button class="drop-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Electric Guitars
+            </button>
+            <ul class="dropdown-menu dropdown-links">
+                <li><a href="{% url 'electric-guitars' %}?transaction=S">For sale</a></li>
+                <li><a href="{% url 'electric-guitars' %}?transaction=R">For rent</a></li>
+                <li><a href="{% url 'electric-guitars' %}?transaction=E">For exchange</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <button class="drop-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Bass Guitars
+            </button>
+            <ul class="dropdown-menu dropdown-links">
+                <li><a href="{% url 'bass-guitars' %}?transaction=S">For sale</a></li>
+                <li><a href="{% url 'bass-guitars' %}?transaction=R">For rent</a></li>
+                <li><a href="{% url 'bass-guitars' %}?transaction=E">For exchange</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <button class="drop-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Acoustic Guitars
+            </button>
+            <ul class="dropdown-menu dropdown-links">
+                <li><a href="{% url 'acoustic-guitars' %}?transaction=S">For sale</a></li>
+                <li><a href="{% url 'acoustic-guitars' %}?transaction=R">For rent</a></li>
+                <li><a href="{% url 'acoustic-guitars' %}?transaction=E">For exchange</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <button class="drop-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Classical Guitars
+            </button>
+            <ul class="dropdown-menu dropdown-links">
+                <li><a href="{% url 'classical-guitars' %}?transaction=S">For sale</a></li>
+                <li><a href="{% url 'classical-guitars' %}?transaction=R">For rent</a></li>
+                <li><a href="{% url 'classical-guitars' %}?transaction=E">For exchange</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <button class="drop-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Your Profile
+            </button>
+            <ul class="dropdown-menu dropdown-links">
+                <li><a href="">Messages</a></li>
+                <li><a href="{% url 'update-user' %}">Update profile</a></li>
+                <li><a href="{% url 'user-advertisements' user.id%}">Your advertisements</a></li>
+            </ul>
+        </li>
+
         {% if request.user.is_authenticated %}
             <li><a class="log-btn last-item" href="{% url 'logout' %}">Logout</a></li>
         {% else %}

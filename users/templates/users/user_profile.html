@@ -1,7 +1,14 @@
 {% extends 'main.html' %}
 {% block content %}
 
-{{user}}
+{{user.username}}
+{{user.first_name}} {{user.last_name}}
+{{user.average_rating}}
+{% for obj in gear %}
+{{obj}}
+{% endfor %}
+
+
 
 {% endblock content %}
 

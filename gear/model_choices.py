@@ -41,6 +41,6 @@ class ConditionTypeChoices(models.TextChoices):
 
 
 class TransactionTypeChoices(models.TextChoices):
-    SELL = 'SEL', 'Sell'
-    EXCHANGE = 'EXC', 'Exchange'
-    RENT = 'REN', 'Rent'
+    SELL = 'S', 'Sell'
+    EXCHANGE = 'E', 'Exchange'
+    RENT = 'R', 'Rent'
